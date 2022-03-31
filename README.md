@@ -3,5 +3,8 @@
 
 ### Prerequisites
 
-+Download and install wxWidgets to C:\SDKs\315\
-+Setup VSCODE for tasks build
+Windows/Linux
++Download and install wxWidgets to the system
++Setup vscode for tasks build
+or
++Manually compile the code
