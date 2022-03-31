@@ -1,0 +1,8 @@
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/tasks.json
+build/release/wxmsw315u_core_gcc1020_x64.dll
+build/release/wxbase315u_gcc1020_x64.dll
+build/debug/wxmsw315ud_core_gcc1020_x64.dll
+build/debug/wxbase315ud_gcc1020_x64.dll
+/**/*.exe
