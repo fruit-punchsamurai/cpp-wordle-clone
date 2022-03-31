@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "debug Wordle",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/src/*.cpp",
+                "${workspaceFolder}/icon.res",
+                "-o",
+                "${workspaceFolder}/build/debug/${fileBasenameNoExtension}.exe",
+                "-I",
+                "${workspaceFolder}/include",
+                "-I",
+                "path/to/wxWidgets/315/include",
+                "-I",
+                "path/towxWidgets/315/lib/gcc_dll/mswud",
+                "-L",
+                "path/to/wxWidgets/315/lib/gcc_dll",
+                "-l",
+                "wxmsw31ud_core",
+                "-l",
+                "wxbase31ud"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "release Wordle",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "${workspaceFolder}/src/*.cpp",
+                "${workspaceFolder}/icon.res",
+                "-o",
+                "${workspaceFolder}/build/release/${fileBasenameNoExtension}.exe",
+                "-I",
+                "${workspaceFolder}/include",
+                "-I",
+                "path/to/wxWidgets/315/include",
+                "-I",
+                "path/to/wxWidgets/315/lib/gcc_dll/mswu",
+                "-L",
+                "path/to/wxWidgets/315/lib/gcc_dll",
+                "-l",
+                "wxmsw31u_core",
+                "-l",
+                "wxbase31u",
+                "-mwindows"
+            ],
+            "group": "build"
+        }
+    ]
+}
