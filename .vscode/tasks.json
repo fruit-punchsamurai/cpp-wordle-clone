@@ -16,7 +16,7 @@
                 "-I",
                 "path/to/wxWidgets/315/include",
                 "-I",
-                "path/towxWidgets/315/lib/gcc_dll/mswud",
+                "path/to/wxWidgets/315/lib/gcc_dll/mswud",
                 "-L",
                 "path/to/wxWidgets/315/lib/gcc_dll",
                 "-l",
