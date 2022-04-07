@@ -19,10 +19,9 @@
 #include <wx/grid.h>
 #include <wx/gbsizer.h>
 #include <wx/frame.h>
-// #include <wx/timer.h>
 #include <fstream>
 #include "gamemechanics.h"
-// #include "timer.h"
+#include "timer.h"
 
 #define PATH_TO_HEADER "../../img/wordlename.bmp"
 #define PATH_TO_ICON "../../img/Wordle.ico"
@@ -45,7 +44,7 @@ class MainFrame : public wxFrame
 			ID_StartNewGame = 1002,
 			ID_GameGrid = 1003,
 			ID_LettersUsedGrid = 1004,
-			ID_Timer = 1005
+			ID_Timer = 1005 // not used
 		};
 
 		wxMenuBar* MenuBar;
@@ -60,10 +59,7 @@ class MainFrame : public wxFrame
 		wxGrid* GameGrid;
 		wxStaticText* LettersUsedText;
 		wxGrid* LettersUsedGrid;
-
-		//Timer functions remainging 
-		// Time_data *timervar;
-		// wxTimer timer;
+		wxTimer m_timer;
 
 		// event handlers
 		void OnStartNewGame(wxCommandEvent &event);
@@ -75,7 +71,8 @@ class MainFrame : public wxFrame
 		void UpdateLettersUsedGrid();
 
 		//for timer
-		// void OnTimer(wxTimerEvent &event);
+		//updates the time in the timer bar every second by timer event generated 
+		void OnUpdateDisplayedTime(wxTimerEvent& event);
 
 		//To check if letter is in used grid
 		wxGridCellCoords LetterInGrid(wxString character);
@@ -90,7 +87,3 @@ class MainFrame : public wxFrame
 		~MainFrame();
 
 };
-
-// wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
-//     EVT_TIMER(ID_Timer, MainFrame::OnTimer)
-// wxEND_EVENT_TABLE()

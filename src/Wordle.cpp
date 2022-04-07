@@ -5,12 +5,10 @@
 
 MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, long style) : wxFrame(parent, id, title, pos, size, style)
 {
+
 	this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	this->SetIcon(wxIcon(wxT(PATH_TO_ICON), wxBITMAP_TYPE_ICO));
 	this->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INFOTEXT));
-
-	// timervar = new Time_data;
-	// timer = wxTimer(this, ID_Timer);
 
 	MenuBar = new wxMenuBar(0);
 	MenuBar->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
@@ -178,6 +176,7 @@ MainFrame::MainFrame(wxWindow *parent, wxWindowID id, const wxString &title, con
 	FileMenu->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::OnStartNewGame), this, StartNewMenuItem->GetId()); 
 	AboutMenu->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(MainFrame::AuthorsOnMenuSelection), this, AuthorsMenuItem->GetId());
 	TextBox->Bind(wxEVT_TEXT_ENTER, wxCommandEventHandler(MainFrame::OnTextEnter), this, TextBox->GetId());
+	m_timer.Bind(wxEVT_TIMER, wxTimerEventHandler(MainFrame::OnUpdateDisplayedTime), this, m_timer.GetId());
 }
 
 MainFrame::~MainFrame()
@@ -205,9 +204,10 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 	if (Game_mec::game_started)
 	{
 
-		// if(Game_mec::no_of_guesses == 0){
-		// 	// timervar->timer_start();
-		// }
+		if (Game_mec::no_of_guesses == 0)
+		{
+			Timer::OnTimerStart(&m_timer, TimerStaticText);
+		}
 
 		wxString text, temp;
 		temp = TextBox->GetValue().MakeUpper();
@@ -217,6 +217,8 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 			// check if valid remaining
 			if (Game_mec::val_checker(temp.MakeLower().ToStdString()))
 			{
+				//start the timer
+
 				// check coorect letters position and
 				Game_mec::let_checker(temp.MakeLower().ToStdString());
 
@@ -245,6 +247,7 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 						}
 						Game_mec::no_of_guesses++;
 						if(Game_mec::no_of_guesses == 6){
+							Timer::OnStopTimer(&m_timer, TimerStaticText);
 							Game_mec::no_of_guesses = 0;
 							Game_mec::game_started = false;
 							temp = Game_mec::hidword;
@@ -252,6 +255,7 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 						}
 						if (Game_mec::status == 1)
 						{
+							Timer::OnStopTimer(&m_timer, TimerStaticText);
 							temp = Game_mec::hidword;
 							StatusStaticText->SetLabel("You Won!, The word was " + temp.MakeUpper().ToStdString());
 							Game_mec::game_started = false;
@@ -334,4 +338,9 @@ wxGridCellCoords MainFrame::LetterInGrid(wxString character)
 		}
 	}
 	return (result=wxGridCellCoords(-1, -1));
+}
+
+void MainFrame::OnUpdateDisplayedTime(wxTimerEvent& event)
+{
+	Timer::UpdateDisplayedTime(&m_timer, TimerStaticText);
 }
