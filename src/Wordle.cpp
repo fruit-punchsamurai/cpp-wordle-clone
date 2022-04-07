@@ -196,6 +196,9 @@ void MainFrame::OnStartNewGame(wxCommandEvent &event)
 			LettersUsedGrid->SetCellBackgroundColour(i, j, LettersUsedGrid->GetDefaultCellBackgroundColour());
 	TextBox->Clear();
 	StatusStaticText->SetLabel("Timer will start after entering first guess.");
+	Timer::OnStopTimer(&m_timer, TimerStaticText);
+	TimerStaticText->SetLabel("Timer: 00:00:00");
+	Game_mec::no_of_guesses = 0;
 	Game_mec::gethidword();
 }
 
