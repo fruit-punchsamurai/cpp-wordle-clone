@@ -211,7 +211,7 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 		text = temp;
 		if (text.Len() == 5)
 		{
-			// check if valid remaining
+			// check if valid
 			if (Game_mec::val_checker(temp.MakeLower().ToStdString()))
 			{
 				// start the timer
@@ -219,7 +219,6 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 				{
 					Timer::OnTimerStart(&m_timer, TimerStaticText);
 				}
-
 				// check correct letters position and
 				Game_mec::let_checker(temp.MakeLower().ToStdString());
 
