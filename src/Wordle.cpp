@@ -206,12 +206,6 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 {
 	if (Game_mec::game_started)
 	{
-
-		if (Game_mec::no_of_guesses == 0)
-		{
-			Timer::OnTimerStart(&m_timer, TimerStaticText);
-		}
-
 		wxString text, temp;
 		temp = TextBox->GetValue().MakeUpper();
 		text = temp;
@@ -220,9 +214,13 @@ void MainFrame::OnTextEnter(wxCommandEvent &event)
 			// check if valid remaining
 			if (Game_mec::val_checker(temp.MakeLower().ToStdString()))
 			{
-				//start the timer
+				// start the timer
+				if (Game_mec::no_of_guesses == 0)
+				{
+					Timer::OnTimerStart(&m_timer, TimerStaticText);
+				}
 
-				// check coorect letters position and
+				// check correct letters position and
 				Game_mec::let_checker(temp.MakeLower().ToStdString());
 
 				// clear status text
