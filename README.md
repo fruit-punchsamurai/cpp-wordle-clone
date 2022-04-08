@@ -1,6 +1,6 @@
 
 ## Binaries
-Windows: [Wordle v1.0](https://github.com/AC17dollars/cpp-wordle-clone/releases/tag/v1.0)
+Windows: [Wordle v1.1](https://github.com/AC17dollars/cpp-wordle-clone/releases/tag/v1.1)
 
 ## Compilation
 
