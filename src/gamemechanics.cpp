@@ -9,11 +9,11 @@ int Game_mec::posn[5] = {0};
 bool Game_mec::game_started = false;
 int Game_mec::no_of_guesses = 0;
 
-void Game_mec::gethidword(std::string s)
-{
-    a = 1;
-    hidword = s;
-}
+// void Game_mec::gethidword(std::string s)
+// {
+//     a = 1;
+//     hidword = s;
+// }
 
 void Game_mec::gethidword()
 {
@@ -47,7 +47,7 @@ std::string Game_mec::puthidword() // use this function to display hiddenword
 void Game_mec::randnum() // generates random number between 0 to 5757 .i.e. no of lines in text file
 {
     srand(time(NULL));
-    random = (rand() % 5757);
+    random = (rand() % 1000);
 }
 
 bool Game_mec::val_checker(std::string s) // checks if word is valid or not and return 0 if invalid return 1 if valid
@@ -84,7 +84,7 @@ void Game_mec::let_checker(std::string s) // check if word is correct or incorre
     if status =2 entered guess has some correct letters(position may not be correct)
 */
 /*
-    posn[0]=1st letter; posn[1]=2nd letter and so on
+    posn[0]=1 1st letter; posn[1]=2nd letter and so on
     if posn[x]=0 wrong letter
     if posn[x]=1 right letter in right position
     if posn[x]=2 right letter in wrong position
