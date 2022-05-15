@@ -316,11 +316,11 @@ void MainFrame::UpdateLettersUsedGrid()
 						default:
 							break;
 						}
-						goto breakloop;
+						goto breakloop;		// the only use case of goto that can't be done using other keywords
 					}
 				}
 			}
-		breakloop:;
+		breakloop:; // to break from entire loop from within nested loop
 		}
 	}
 	TextBox->SetValue("");
